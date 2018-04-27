@@ -1,0 +1,97 @@
+doctype html
+html(lang='en')
+  head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    // Bootstrap CSS
+    link(href='css/bootstrap.css', rel='stylesheet')
+    link(href='css/custom.css', rel='stylesheet')
+    title Ghetto BnB Home
+  body(style='background-color: #EDE6E3')
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand(href='#GOES TO HOMEPAGE') BadArea
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNavAltMarkup', aria-controls='navbarNavAltMarkup', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarNavAltMarkup.collapse.navbar-collapse
+        .navbar-nav
+          a.nav-item.nav-link(href='#') View Homes
+          a.nav-item.nav-link(href='#') List a Home
+    .container(style='margin-top: 50px')
+      .container.text-center
+        h1 Welcome to BadArea!
+        h4 Get the true bad neighborhood experience!
+        div(style='margin-top: 15px')
+          button.btn.btn-primary View Homes
+        div(style='margin-top: 15px')
+          button.btn.btn-primary(data-toggle='modal', data-target='#signupModal') Sign Up
+        div(style='margin-top: 15px')
+          button.btn.btn-primary(data-toggle='modal', data-target='#loginModal') Login
+        div(style='margin-top: 15px')
+          h3
+            | Current logged in user:
+            span#loggedInUser Not logged in!
+    #signupModal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h5#signupModalTitle.modal-title Sign Up:
+            button.close(type='button', data-dismiss='modal')
+              span ×
+          .modal-body
+            form#signupForm
+              .form-group
+                label Enter a username:
+                input#signupUsername.form-control(type='text', placeholder='Username')
+              .form-group
+                label Enter a password:
+                input#signupPassword.form-control(type='password', placeholder='Password')
+                small.form-text.text-muted
+                  | Don't worry we save your password as an unencrypted string! Easy identity theft for everyone!
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+            button#signupSubmitButton.btn.btn-primary(type='button', data-dismiss='modal') Sign Up
+          //
+            <script>
+            $('#signupSubmitButton').click(function(){
+            });
+            </script>
+    #loginModal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalCenterTitle.modal-title Enter your details below:
+            button.close(type='button', data-dismiss='modal')
+              span ×
+          .modal-body
+            form#loginForm
+              .form-group
+                label Enter your username:
+                input#loginUsername.form-control(type='text', placeholder='Username')
+              .form-group
+                label Enter your password:
+                input#loginPassword.form-control(type='password', placeholder='Password')
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+            button#loginSubmitButton.btn.btn-primary(type='button', data-dismiss='modal') Login
+    // Optional JavaScript
+    // jQuery first, then Popper.js, then Bootstrap JS
+    script(src='src/makersbnb.js')
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    // JQUERY
+    script.
+      $('#signupSubmitButton').on("click", function() {
+      var username = $('#signupUsername').val();
+      var password = $('#signupPassword').val();
+      ghettoBnb.signUp(username, password);
+      });
+      $("#loginSubmitButton").on("click", function() {
+      var loginusername = $("#loginUsername").val();
+      var loginpassword = $("#loginPassword").val();
+      ghettoBnb.isSignIn(loginusername, loginpassword);
+      $("#loggedInUser").text(function() {
+      return ghettoBnb.username;
+      });
+      });
